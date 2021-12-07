@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>borrar datos</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#borrado-seguro-de-información">Borrado seguro de información</a>
+<ul>
+<li><a href="#software">Software</a></li>
+<li><a href="#creando-usb-live">Creando USB live</a></li>
+<li><a href="#iniciando-el-proceso">Iniciando el proceso</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      
+<table>
+<thead>
+<tr>
+<th>Información del documento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Versión: 1</td>
+</tr>
+<tr>
+<td>Autor: Rodrigo Castro</td>
+</tr>
+<tr>
+<td>Fecha de creación: 07/12/21</td>
+</tr>
+<tr>
+<td>Fecha de Actualización 07/12/21</td>
+</tr>
+</tbody>
+</table><h1 id="borrado-seguro-de-información">Borrado seguro de información</h1>
+<p>Borrar información de manera segura (también conocido como data destruction, secure erase, secure data wiping, entre otros)</p>
+<p>Para hacer irrecuperable los datos se existen tres métodos</p>
+<ul>
+<li>
+<p><strong>Degaussing</strong>: consiste en desmagnetizar los medios, este metodo solo es efectivo para dispositivos que almacenan los datos de forma magnética como antiguos dispositivos como diskette o HDD, pero no funciona con las unidades flash o los SSD, causa que los dispositivos queden inservibles y tiene un impacto en el medio ambiente.</p>
+</li>
+<li>
+<p><strong>Destrucción física</strong>: consiste en destruir físicamente el medio que contiene los datos, haciendo inutilizable el medio o la recuperación de los datos, sin embargo deja el medio inutilizable y tiene un impacto en el medio ambiente.</p>
+</li>
+<li>
+<p><strong>Mediante software</strong>: Consiste en usar software que realiza un proceso de eliminación que va más allá de la básica eliminación de archivos, donde se eliminan los punteros de los datos sin eliminar los datos. Es la opción sugerida en este documento</p>
+</li>
+</ul>
+<hr>
+<h2 id="software">Software</h2>
+<p>Se recomienda que el software para la eliminación de datos debé permitir la selección de un estándar específico y verifique que el método de sobrescritura fuera exitoso y haya eliminado datos en todo el dispositivo. Se recomienda el uso de SharedOS</p>
+<h3 id="shredos">ShredOS</h3>
+<p>ShredOS es una distribución de Linux liviana que se puede usar desde una USB (BIOS o UEFI) con el único propósito de borrar de forma segura todo el contenido de discos utilizando el programa nwipe, ShredOS siempre proporcionará el último nwipe en un kernel de Linux actualizado para que sea compatible con hardware moderno admitiendo procesadores de 32 bits o 64 bits.</p>
+<p><a href="https://github.com/PartialVolume/shredos.x86_64/releases" title="SharedOS Releases">Descarga SharedOS</a></p>
+<p><a href="https://github.com/PartialVolume/shredos.x86_64" title="SharedOS">Documentación oficial de SharedOS</a></p>
+<h2 id="creando-usb-live">Creando USB live</h2>
+<p>Una vez descargada la imagen de SharedOS, utilizaremos el programa balenaEtcher que esta disponible para Windows, Linux y macOS se puede descargar desde el siguiente <a href="https://github.com/PartialVolume/shredos.x86_64" title="sito de balenaEtcher">enlace</a>.</p>
+<p>insertamos el dispositivo USB en el que se instalara SharedOS y ejecutaremos balenaEtcher.</p>
+<p><img src="imagenes/02-belenaEtcher.png" alt="belenaEtcher" title="belenaEtcher"></p>
+<p>Seleccionamos la opción <em><strong>Flash from file</strong></em></p>
+<p><img src="imagenes/03-flhas-from-file.png" alt="Flash from file" title="Opción Flash from file"></p>
+<p>Seleccionamos el archivo de imagen de SharedOS</p>
+<p><img src="imagenes/04-seleccion-archivo-de-imagen.png" alt="Selección archivo de imagen SharedOS" title="Selección archivo de imagen SharedOS"></p>
+<p><strong>Nota</strong>: Asegúrese de descargar el archivo de imagen correcto, el archivo <code>.img</code> es recomendable para generar en una live USB y el archivo <code>.iso</code> es recomendable apra quemar en un live CD</p>
+<p>Verificamos el dispositivo USB a utilizar, de no ser el que necesitamos podemos cambiarlo pulsando sobre la opción <em><strong>Change</strong></em></p>
+<p><img src="imagenes/05-verificar-dispositivo.png" alt="Verificando el dispositivo USB" title="Verificando el dispositivo USB"></p>
+<p>Presionamos sobre el botón <em><strong>Flash!</strong></em></p>
+<p><img src="imagenes/06-Flash.png" alt="Flash" title="Flash"></p>
+<p>Esperamos a que termine el proceso</p>
+<p><img src="imagenes/07-flashing.png" alt="Flashing" title="Flashing"></p>
+<p>Una vez terminado el proceso retiramos el dispositivo USB.</p>
+<h2 id="iniciando-el-proceso">Iniciando el proceso</h2>
+<p>Apagamos el equipo donde usaremos ShareOS para eliminar archivos, e iniciamos el sistema desde el dispositivo USB conectado</p>
+<p><strong>Nota</strong>: En caso de sistemas operativos Windows en versiones 8, 10 y 11 dado a que el sistema en si no se apaga para dar una sensación de ser mas rapido, evita que los discos se puedan montar por lo que tenemos dos opciones</p>
+<ul>
+<li>
+<p>Abrir CMD como administrador y ejecutar el comando <code>powercfg -h off</code></p>
+</li>
+<li>
+<p>Abrir CMD como administrador y ejecutar el comando <code>shutdown -r -fw -t 0</code></p>
+</li>
+</ul>
+<h3 id="iniciando-shredos">Iniciando ShredOS</h3>
+<p>Al iniciar veremos la siguiente pantalla</p>
+<p><img src="imagenes/08-shredos.png" alt="Pantalla de inicio Shared OS" title="Pantalla de inicio SharedOS"></p>
+<p>Presionamos la tecla <code>m</code> para seleccionar el metodo de eliminación.</p>
+<p>Se sugiere uasr el estándar DoD 5220.22M</p>
+<p><img src="imagenes/09-seleccionar-metodo.png" alt="Seleccionar método de eliminación" title="Seleccionar método de eliminación"></p>
+<p>Seleccionamos la unidad o unidades de disco en las que deseamos eliminar los datos y presionamos la tecla espacio.</p>
+<p><img src="imagenes/10-unidades-seleccionadas.png" alt="Seleccionar unidades a borrar" title="Seleccionar unidades a borrar"></p>
+<p>Una vez seleccionadas las unidades presionar la tecla shift + s, el proceso iniciara</p>
+<p><img src="imagenes/11-wiping.png" alt="Eliminación en proceso" title="Eliminación en proceso"></p>
+<p>Dependera del tamaño del disco el tiempo que tardara en eliminar los datos.</p>
+<p><img src="imagenes/12-wiping-finish.png" alt="Eliminación completa" title="Eliminación completa"></p>
+<p>Una vez terminado presionamos enter y nos mostrara un resumen del procedimiento realizado.</p>
+<p><img src="imagenes/13-resume.png" alt="Resumen del proceso" title="resumen del proceso"></p>
+<p>Copiamos este reporte para incluirlo en un informe técnico.</p>
+<h3 id="copiar-archivo-de-log-del-proceso-realizado">Copiar archivo de log del proceso realizado</h3>
+<p><em><strong>Nota</strong></em>: el reporte se genera una vez terminado el proceso y se debe copiar antes de salir del sistema.</p>
+<p>Podemos insertar una usb para copiar el reporte, utilizamos el comando para lostar dispositivos conectados</p>
+<pre class=" language-bash"><code class="prism  language-bash">lslbk
+</code></pre>
+<p><img src="imagenes/14-listar-dispositivos-conectadso.png" alt="Listar dispositivos conectados" title="Listar dispositivos conectados"></p>
+<p>Identificamos el dispositivo, en este caso es el <code>sdb1</code> creamos un directorio para montar el volumen con el comando</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">mkdir</span> /media/usb
+</code></pre>
+<p>Montamos el volumen con el comando</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">mount</span> /dev/sdb1 /media/usb
+</code></pre>
+<p>Listamos el contenido del directorio de ShredOS para ver los archivos con el comando</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">ls</span>
+</code></pre>
+<p>Veremos un archivo con la estructura <code>nwipe_log_&lt;fecha&gt;-&lt;hora&gt;</code></p>
+<p><em><strong>Nota</strong></em>: Si hemos realizado varios procesos se crearan varios archivos <code>nwipe_log_</code> variando la fecha o la hora</p>
+<p>Procedemos a copiar el reporte o reportes con el comando</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">cp</span> /nwipe_log* /media/usb
+</code></pre>
+<p><img src="imagenes/15-comands.png" alt="Comandos" title="Comandos usados"></p>
+<p>Verificamos que los archivos esten en el dispositivo USB con el comando</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">ls</span> /media/usb/
+</code></pre>
+<p><img src="imagenes/16-verificando-archivos-usb.png" alt="Verificando los archivos copiados" title="Verificando los archivos copiados"></p>
+<p>Desmontamos el dispositivo USB con el comando</p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">cd</span> /media/<span class="token punctuation">;</span><span class="token function">umount</span> usb
+</code></pre>
+<p><img src="imagenes/17-unomunt.png" alt="Desmontar volumen" title="Desmontar volumen"></p>
+<p>Desconectamos el dispositivo usb con los reportes y finalizamos el sistema, ahora el disco se encuentra libre de datos y no es posible recuperar información.</p>
+<!-- lista de imagenes -->
+<!-- lista de links -->
+
+    </div>
+  </div>
+</body>
+
+</html>
